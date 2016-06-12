@@ -1,7 +1,7 @@
 {
   "name": "ember-wait-for-test-helper",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember waitFor test helper",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,14 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kellyselden/ember-wait-for-test-helper.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Kelly Selden",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -40,7 +43,8 @@
     "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-test-helpers"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6"

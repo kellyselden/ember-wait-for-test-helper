@@ -1,4 +1,5 @@
 # Ember-wait-for-test-helper
+[![npm version](https://badge.fury.io/js/ember-wait-for-test-helper.svg)](https://badge.fury.io/js/ember-wait-for-test-helper)
 
 This README outlines the details of collaborating on this Ember addon.
 
