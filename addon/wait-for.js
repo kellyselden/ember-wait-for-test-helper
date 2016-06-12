@@ -38,8 +38,8 @@ function _waitFor(
   });
 }
 
-export function waitFor(selector, context) {
-  return _waitFor(null, selector, context);
+export function waitFor(selector, context, options) {
+  return _waitFor(null, selector, context, options);
 }
 
 export default registerAsyncHelper('waitFor', _waitFor);
