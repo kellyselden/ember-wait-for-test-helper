@@ -39,7 +39,8 @@ export function selectorToExist(selector, count) {
     if (count) {
       return existsCount === count;
     } else {
-      return existsCount > 0; }
+      return existsCount > 0;
+    }
   };
 }
 
