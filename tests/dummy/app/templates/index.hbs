@@ -1,0 +1,14 @@
+<p>
+  Clicking this button will cause a div to appear in
+  two seconds.
+</p>
+
+<button {{action "showDiv"}} class="show-div">Click me</button>
+
+{{#if isShowing}}
+
+  <div class="div-exists">
+    It exists!
+  </div>
+
+{{/if}}
