@@ -1,6 +1,7 @@
 # ember-wait-for-test-helper
 
 [![npm version](https://badge.fury.io/js/ember-wait-for-test-helper.svg)](https://badge.fury.io/js/ember-wait-for-test-helper)
+[![Build Status](https://travis-ci.org/ember-cli/ember-cli.svg?branch=master)](https://travis-ci.org/ember-cli/ember-cli)
 
 Wait for your application to be in a specific state before continuing the test runner.
 
