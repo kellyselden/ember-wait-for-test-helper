@@ -1,6 +1,6 @@
 {
   "name": "ember-wait-for-test-helper",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Ember waitFor test helper",
   "keywords": [
     "ember-addon",
