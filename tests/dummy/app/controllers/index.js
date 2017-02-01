@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  showDiv() {
-    this.set('isShowing', true);
-  },
+  isShowing1: false,
+  isShowing2: false,
+  isShowing3: false,
 
   actions: {
-    showDiv() {
+    show(n) {
       // normally we would use Ember.run.later for this. However,
       // Ember.Testing has a waiter that checks the run loop and will
       // wait for all queues to finish. In order to test waitFor we're
@@ -14,8 +14,9 @@ export default Ember.Controller.extend({
       // into this queue.
 
       setTimeout(() => {
-        console.log(this);
-        Ember.run(this, 'showDiv');
+        Ember.run(() => {
+          this.set(`isShowing${n}`, true);
+        });
       }, 2000);
     }
   }
