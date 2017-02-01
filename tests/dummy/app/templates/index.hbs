@@ -1,0 +1,46 @@
+<p>
+  Clicking this button will cause a div to appear in
+  two seconds.
+</p>
+
+{{! div 1 }}
+
+<button {{action "show" 1}} class="show1">Click me</button>
+
+{{#if isShowing1}}
+
+  <div class="div1-exists">
+    It exists!
+  </div>
+
+{{/if}}
+
+{{! div 2 }}
+
+<button {{action "show" 2}} class="show2">Click me</button>
+
+{{#if isShowing2}}
+
+  <div class="div2-context">
+    <div class="div2-exists">
+      It exists!
+    </div>
+  </div>
+
+{{/if}}
+
+
+{{! div 3 }}
+
+<button {{action "show" 3}} class="show3">Click me</button>
+
+{{#if isShowing3}}
+
+  <div class="div3-exists">
+    It exists!
+  </div>
+  <div class="div3-exists">
+    It exists!
+  </div>
+
+{{/if}}
