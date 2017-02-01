@@ -1,5 +1,7 @@
 # ember-wait-for-test-helper
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kellyselden/ember-wait-for-test-helper.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/ember-wait-for-test-helper.svg)](https://badge.fury.io/js/ember-wait-for-test-helper)
 [![Build Status](https://travis-ci.org/ember-cli/ember-cli.svg?branch=master)](https://travis-ci.org/ember-cli/ember-cli)
 
