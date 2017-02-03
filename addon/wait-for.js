@@ -21,7 +21,7 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
 
   // option defaults
   options = options || {};
-  options.interval = options.interval || 1;
+  options.interval = options.interval || 10;
 
   // Support old API where you can pass in a selector as
   // a string and we'll wait for that to exist. Can also
@@ -45,17 +45,56 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
     waitForFn = selectorOrFn;
   }
 
-  return new Promise(resolve => {
-    (function restart() {
-      setTimeout(() => {
-        if (waitForFn()) {
-          resolve();
-        } else {
-          restart();
-        }
-      }, options.interval);
-    })();
+  return new Promise((resolve) => {
+    let label = waitForFn;
+
+    let isComplete = waitForFn;
+
+    let stopTrying = function() {
+      return !_isActive(label);
+    };
+
+    let loop = function() {
+      let timer = setTimeout(peek, options.interval);
+      _track(label, timer);
+    };
+
+    let peek = function() {
+      if (isComplete() || stopTrying()) {
+        resolve(_done(label));
+      } else {
+        loop();
+      }
+    };
+
+    loop();
   });
+}
+
+const _runningWaiters = new Map();
+
+function _track(label, timer) {
+  _runningWaiters.set(label, timer);
+}
+
+function _cancel(label) {
+  _runningWaiters.delete(label);
+}
+
+function _isActive(label) {
+  return _runningWaiters.has(label);
+}
+
+function _done(label) {
+  _cancel(label);
+}
+
+export function activeCount() {
+  return _runningWaiters.size;
+}
+
+export function cleanup() {
+  return _runningWaiters.clear();
 }
 
 export function selectorToExist(selector, count) {
