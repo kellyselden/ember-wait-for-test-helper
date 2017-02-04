@@ -21,7 +21,7 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
 
   // option defaults
   options = options || {};
-  options.interval = options.interval || 10;
+  options.interval = options.interval || 1;
 
   // Support old API where you can pass in a selector as
   // a string and we'll wait for that to exist. Can also
