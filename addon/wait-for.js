@@ -45,17 +45,60 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
     waitForFn = selectorOrFn;
   }
 
-  return new Promise(resolve => {
-    (function restart() {
-      setTimeout(() => {
-        if (waitForFn()) {
-          resolve();
-        } else {
-          restart();
-        }
-      }, options.interval);
-    })();
+  return new Promise((resolve) => {
+    let label = waitForFn;
+
+    let isComplete = waitForFn;
+
+    let stopTrying = function() {
+      return !_isActive(label);
+    };
+
+    let loop = function() {
+      let timer = setTimeout(peek, options.interval);
+      _track(label, timer);
+    };
+
+    let peek = function() {
+      if (isComplete() || stopTrying()) {
+        resolve(_done(label));
+      } else {
+        loop();
+      }
+    };
+
+    loop();
   });
+}
+
+// Normally we we use Map here, but that doesn't work
+// in phantom without including the babel polyfill.
+// Note that Ember.Map is private, so we may have
+// to refactor this out at some point.
+const _runningWaiters = new Ember.Map();
+
+function _track(label, timer) {
+  _runningWaiters.set(label, timer);
+}
+
+function _cancel(label) {
+  _runningWaiters.delete(label);
+}
+
+function _isActive(label) {
+  return _runningWaiters.has(label);
+}
+
+function _done(label) {
+  _cancel(label);
+}
+
+export function activeCount() {
+  return _runningWaiters.size;
+}
+
+export function cleanup() {
+  return _runningWaiters.clear();
 }
 
 export function selectorToExist(selector, count) {
