@@ -6,9 +6,13 @@ import { selectorToExist, cleanup, activeCount } from 'ember-wait-for-test-helpe
 moduleForAcceptance('Acceptance | cleanup');
 
 test('I should be able to cancel waiters', function(assert) {
-  assert.expect(2);
+  assert.expect(3);
 
   visit('/');
+
+  // make sure that when this test starts there are 0 waiters running.
+  // The rest of the tests will be counting the total number of waiters.
+  assert.equal(activeCount(), 0);
 
   // this should cause our test to freeze until the runner
   // times out. at the point the suite will move on to the
@@ -20,7 +24,7 @@ test('I should be able to cancel waiters', function(assert) {
   // below should kick off.
   setTimeout(function() {
 
-    assert.ok(activeCount() === 1);
+    assert.equal(activeCount(), 1);
 
     cleanup();
 
@@ -30,6 +34,6 @@ test('I should be able to cancel waiters', function(assert) {
     // there should be no waiters running since we cleaned them
     // up. That means this andThen block should start running
     // once the cleanup compltes.
-    assert.ok(activeCount() === 0);
+    assert.equal(activeCount(), 0);
   });
 });
