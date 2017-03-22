@@ -1,16 +1,16 @@
-/* jshint node: true */
+/* eslint-env node */
 'use strict';
 
 module.exports = {
   name: 'ember-wait-for-test-helper',
 
-  included: function(app) {
+  included(app) {
     this.app = app;
 
     return this._super.included.apply(this, arguments);
   },
 
-  treeFor: function() {
+  treeFor() {
     if (this.app.env === 'production') {
       return;
     }
