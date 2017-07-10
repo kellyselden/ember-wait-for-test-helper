@@ -49,7 +49,7 @@ test('If given a function it should wait for that function to return true', func
 
   visit("/");
 
-  waitFor(function() {
+  waitFor(() => {
     loops = loops + 1;
     return loops === 100;
   });
