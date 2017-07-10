@@ -58,11 +58,13 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
     }
 
     function peek() {
-      if (isComplete() || stopTrying()) {
-        resolve(done(label));
-      } else {
-        loop();
-      }
+      Promise.resolve(isComplete()).then(isComplete => {
+        if (isComplete || stopTrying()) {
+          resolve(done(label));
+        } else {
+          loop();
+        }
+      });
     }
 
     loop();
