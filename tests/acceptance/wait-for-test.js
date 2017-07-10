@@ -7,47 +7,47 @@ moduleForAcceptance('Acceptance | wait for');
 
 // support the old string based API
 test('If given a string it should wait for a selector to exist', function(assert) {
-  visit("/");
+  visit('/');
 
-  click(".show1");
+  click('.show1');
 
-  waitFor(".div1-exists");
+  waitFor('.div1-exists');
 
   andThen(() => {
-    assert.equal(find(".div1-exists").length, 1);
+    assert.equal(find('.div1-exists').length, 1);
   });
 });
 
 // support string based API w/ string context
 test('If given a string and a context, it should use the context into selectorToExist', function(assert) {
-  visit("/");
+  visit('/');
 
-  click(".show2");
+  click('.show2');
 
-  waitFor(".div2-exists", ".div2-context");
+  waitFor('.div2-exists', '.div2-context');
 
   andThen(() => {
-    assert.equal(find(".div2-exists", ".div2-context").length, 1);
+    assert.equal(find('.div2-exists', '.div2-context').length, 1);
   });
 });
 
 // support string based API w/ options hash
 test('If given a string and options hash, it should pass the options to selectorToExist', function(assert) {
-  visit("/");
+  visit('/');
 
-  click(".show3");
+  click('.show3');
 
-  waitFor(".div3-exists", { count: 2 });
+  waitFor('.div3-exists', { count: 2 });
 
   andThen(() => {
-    assert.equal(find(".div3-exists").length, 2);
+    assert.equal(find('.div3-exists').length, 2);
   });
 });
 
 test('If given a function it should wait for that function to return true', function(assert) {
   let loops = 0;
 
-  visit("/");
+  visit('/');
 
   waitFor(function() {
     loops = loops + 1;
@@ -60,13 +60,13 @@ test('If given a function it should wait for that function to return true', func
 });
 
 test('Using the selectorToExist helper', function(assert) {
-  visit("/");
+  visit('/');
 
-  click(".show1");
+  click('.show1');
 
-  waitFor(selectorToExist(".div1-exists"));
+  waitFor(selectorToExist('.div1-exists'));
 
   andThen(() => {
-    assert.equal(find(".div1-exists").length, 1);
+    assert.equal(find('.div1-exists').length, 1);
   });
 });
