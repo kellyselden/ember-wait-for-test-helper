@@ -33,7 +33,7 @@ test('I should be able to cancel waiters', function(assert) {
   andThen(() => {
     // there should be no waiters running since we cleaned them
     // up. That means this andThen block should start running
-    // once the cleanup compltes.
+    // once the cleanup completes.
     assert.equal(activeCount(), 0);
   });
 });
