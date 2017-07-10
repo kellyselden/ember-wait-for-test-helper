@@ -48,22 +48,22 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
 
     let isComplete = waitForFn;
 
-    let stopTrying = function() {
+    function stopTrying() {
       return !isActive(label);
-    };
+    }
 
-    let loop = function() {
+    function loop() {
       let timer = setTimeout(peek, options.interval);
       track(label, timer);
-    };
+    }
 
-    let peek = function() {
+    function peek() {
       if (isComplete() || stopTrying()) {
         resolve(done(label));
       } else {
         loop();
       }
-    };
+    }
 
     loop();
   });
@@ -87,9 +87,7 @@ function isActive(label) {
   return runningWaiters.has(label);
 }
 
-function done(label) {
-  cancel(label);
-}
+const done = cancel;
 
 export function activeCount() {
   return runningWaiters.size;
