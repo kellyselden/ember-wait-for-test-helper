@@ -40,7 +40,7 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
     waitForFn = selectorOrFn;
   }
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     let label = waitForFn;
 
     let isComplete = waitForFn;
@@ -51,7 +51,7 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
 
     function loop() {
       let timer = setTimeout(peek, options.interval);
-      track(label, timer);
+      track(label, { timer, reject });
     }
 
     function peek() {
@@ -91,6 +91,12 @@ export function activeCount() {
 }
 
 export function cleanup() {
+  runningWaiters.forEach(({ timer, reject }) => {
+    clearTimeout(timer);
+
+    reject();
+  });
+
   return runningWaiters.clear();
 }
 
