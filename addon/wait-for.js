@@ -2,9 +2,7 @@ import Ember from 'ember';
 
 const {
   $,
-  Test: {
-    registerAsyncHelper,
-  },
+  Test: { registerAsyncHelper },
   RSVP: { Promise }
 } = Ember;
 
