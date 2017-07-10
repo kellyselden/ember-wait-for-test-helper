@@ -48,8 +48,6 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
   return new Promise((resolve) => {
     let label = waitForFn;
 
-    let isComplete = waitForFn;
-
     let stopTrying = function() {
       return !_isActive(label);
     };
@@ -60,11 +58,17 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
     };
 
     let peek = function() {
-      if (isComplete() || stopTrying()) {
-        resolve(_done(label));
-      } else {
-        loop();
+      if (stopTrying()) {
+        return resolve();
       }
+
+      Promise.resolve(waitForFn()).then(isComplete => {
+        if (isComplete) {
+          resolve(_done(label));
+        } else {
+          loop();
+        }
+      });
     };
 
     loop();

@@ -1,6 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
-
+import Ember from 'ember';
 import { selectorToExist } from 'ember-wait-for-test-helper/wait-for';
 
 moduleForAcceptance('Acceptance | wait for');
@@ -52,6 +52,23 @@ test('If given a function it should wait for that function to return true', func
   waitFor(function() {
     loops = loops + 1;
     return loops === 100;
+  });
+
+  andThen(() => {
+    assert.equal(loops, 100);
+  });
+});
+
+test('If given a function that returns a promise it should wait for that promise to resolve true', function(assert) {
+  let loops = 0;
+
+  visit("/");
+
+  waitFor(() => {
+    return new Ember.RSVP.Promise(resolve => {
+      loops += 1;
+      return resolve(loops === 100);
+    });
   });
 
   andThen(() => {
