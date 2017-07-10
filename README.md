@@ -20,7 +20,7 @@ Now you can do something like:
 ```js
 import { selectorToExist } from 'ember-wait-for-test-helper/wait-for';
 
-test("it should wait before asserting", function(assert) {
+test('it should wait before asserting', function(assert) {
   click('.button');
 
   waitFor(selectorToExist('.a-slow-jquery-plugin'));
@@ -39,8 +39,8 @@ running.
 
 
 ```js
-test("it should wait before asserting", function(assert) {
-  visit("/");
+test('it should wait before asserting', function(assert) {
+  visit('/');
 
   waitFor(() => {
     let result = getAnswerFromSomewhere();

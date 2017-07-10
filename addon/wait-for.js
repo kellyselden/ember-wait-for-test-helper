@@ -11,7 +11,7 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
   let options;
 
   // find the options argument
-  if (typeof contextOrOptions === "string") {
+  if (typeof contextOrOptions === 'string') {
     options = selectorOptions;
   } else {
     options = contextOrOptions;
@@ -24,13 +24,13 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
   // Support old API where you can pass in a selector as
   // a string and we'll wait for that to exist. Can also
   // pass along context and count option.
-  if (typeof selectorOrFn === "string") {
+  if (typeof selectorOrFn === 'string') {
     let selector;
     let count = options.count || 1;
 
     // if context is a string we'll use it to scope the
     // selector
-    if (typeof contextOrOptions === "string") {
+    if (typeof contextOrOptions === 'string') {
       let context = contextOrOptions;
       selector = `${context} ${selectorOrFn}`;
     } else {
