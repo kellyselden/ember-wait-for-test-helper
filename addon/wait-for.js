@@ -43,7 +43,7 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
     waitForFn = selectorOrFn;
   }
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     let label = waitForFn;
 
     let isComplete = waitForFn;
