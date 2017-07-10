@@ -1,10 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  isShowing1: false,
-  isShowing2: false,
-  isShowing3: false,
-
   actions: {
     show(n) {
       // normally we would use Ember.run.later for this. However,
