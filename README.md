@@ -35,7 +35,7 @@ test("it should wait before asserting", function(assert) {
 
 You can define your own waiters. A waiter is a function that will continuously
 run until it returns true. Once the waiter returns true your test will continue
-running.
+running. It supports Promises.
 
 
 ```js
@@ -45,6 +45,13 @@ test("it should wait before asserting", function(assert) {
   waitFor(() => {
     let result = getAnswerFromSomewhere();
     return result === 42; // only continue when result is 42
+  });
+  // or
+  waitFor(() => {
+    return new Promise(resolve => {
+      let result = getAnswerFromSomewhere();
+      return resolve(result === 42); // only continue when result is 42
+    });
   });
 
   andThen(() => {
