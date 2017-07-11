@@ -71,7 +71,11 @@ function _waitFor(app, selectorOrFn, contextOrOptions, selectorOptions) {
   });
 }
 
-const runningWaiters = new Map();
+// Normally we we use Map here, but that doesn't work
+// in phantom without including the babel polyfill.
+// Note that Ember.Map is private, so we may have
+// to refactor this out at some point.
+const runningWaiters = new Ember.Map();
 
 function track(label, timer) {
   runningWaiters.set(label, timer);
