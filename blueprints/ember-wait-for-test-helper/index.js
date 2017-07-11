@@ -1,33 +1,28 @@
-/*jshint node:true*/
+/* eslint-env node */
+'use strict';
 
-var existsSync = require('exists-sync');
+const existsSync = require('fs').existsSync;
 
 module.exports = {
-  normalizeEntityName: function() {
-    // this prevents an error when the entityName is
-    // not specified (since that doesn't actually matter
-    // to us
-  },
+  normalizeEntityName() {},
 
-  afterInstall: function() {
-    var addon = this;
-
+  afterInstall() {
     if (existsSync('tests/helpers/destroy-app.js')) {
-      return addon.insertIntoFile(
+      return this.insertIntoFile(
         'tests/helpers/destroy-app.js',
         "import { cleanup } from 'ember-wait-for-test-helper/wait-for';",
         {
           after: "import Ember from 'ember';\n"
         }
-      ).then(function() {
-        return addon.insertIntoFile(
+      ).then(() => {
+        return this.insertIntoFile(
           'tests/helpers/destroy-app.js',
           "  cleanup();",
           {
             before: "  Ember.run(application, 'destroy');"
-          });
+          }
+        );
       });
     }
-
   }
 };
