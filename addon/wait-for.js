@@ -77,15 +77,13 @@ function track(label, timer) {
   runningWaiters.set(label, timer);
 }
 
-function cancel(label) {
+function done(label) {
   runningWaiters.delete(label);
 }
 
 function isActive(label) {
   return runningWaiters.has(label);
 }
-
-const done = cancel;
 
 export function activeCount() {
   return runningWaiters.size;
