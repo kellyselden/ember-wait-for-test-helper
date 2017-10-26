@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     show(n) {
       // normally we would use Ember.run.later for this. However,
@@ -10,7 +11,7 @@ export default Ember.Controller.extend({
       // into this queue.
 
       setTimeout(() => {
-        Ember.run(() => {
+        run(() => {
           this.set(`isShowing${n}`, true);
         });
       }, 2000);
